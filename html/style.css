@@ -1,0 +1,210 @@
+a {
+  color: #5CB33F;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #D7F42A;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: #555;
+  background-color: #f2f2f2;
+  line-height: 1.3em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: .3em;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.page {
+  text-align: left;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 0 2em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+header .inner {
+  display: flex;
+}
+
+header .logo {
+  width: 100px;
+  margin: 1em;
+  transition: ease all 1s;
+}
+
+header .logo img {
+  display: block;
+}
+
+header .titel {
+  align-self: center;
+}
+
+header .titel h1 {
+  margin: 0;
+}
+
+header .titel .payoff {
+  font-family: 'Open Sans', sans-serif;
+  margin: .5em 0 0 0;
+  font-style: italic;
+  color: #D7F42A;
+}
+
+.bestel-knop {
+  text-align: center;
+}
+
+.bestel-knop button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  border: 1px solid #D7F42A;
+  background-color: #fff;
+  border-radius: 20px;
+  margin: 2em;
+  padding: .5em 1em;
+  box-shadow: 1px 1px 10px 1px rgba(68, 68, 68, 0.6);
+  cursor: pointer;
+}
+
+.bestel-knop button:hover {
+  border-color: #555;
+  background-color: #D7F42A;
+}
+
+header .bestel-knop {
+  text-align: right;
+  flex-grow: 1;
+}
+
+header .bestel-knop button {
+  box-shadow: 1px 1px 10px 1px rgba(255, 255, 255, 0.6);
+}
+
+main {
+  margin-top: 110px;
+}
+
+main .product-foto {
+  text-align: center;
+}
+
+main .product-foto img {
+  max-height: 300px;
+  margin: 2em 0;
+}
+
+main .inner {
+  background-color: #fff;
+}
+
+main .inner .left,
+main .inner .right {
+  max-width: 480px;
+}
+
+main .inner .product-tekst {
+  display: flex;
+  background-color: #D7F42A;
+  align-items: center;
+}
+
+main .inner .product-tekst img {
+  display: block;
+  margin: 0;
+}
+
+main .inner .product-tekst .tekst > * {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+main .product-uitgelicht {
+  text-align: center;
+  position: relative;
+}
+
+main .product-uitgelicht img {
+  max-height: 300px;
+  margin: 2em 0;
+}
+
+main .product-uitgelicht .product-prijs {
+  align-items: center;
+  background-color: #D7F42A;
+  border-radius: 50%;
+  bottom: 10px;
+  box-shadow: 1px 1px 10px 1px rgba(68, 68, 68, 0.6);
+  display: flex;
+  height: 150px;
+  position: absolute;
+  right: 250px;
+  width: 150px;
+}
+
+main .product-uitgelicht .product-prijs .prijs {
+  text-align: center;
+  font-size: 250%;
+  font-weight: bold;
+  width: 100%;
+}
+
+footer {
+  background-color: #cecece;
+  padding: 1em;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  header .bestel-knop {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 625px) {
+  main .inner .product-tekst {
+    flex-direction: column;
+  }
+
+  main .inner .product-tekst.number-two {
+    flex-direction: column-reverse;
+  }
+
+  main .inner .product-tekst .left,
+  main .inner .product-tekst .right {
+    max-width: 100%;
+  }
+}
