@@ -192,9 +192,21 @@ footer p {
   header .bestel-knop {
     display: none;
   }
+
+  main .product-uitgelicht .product-prijs {
+    right: 0;
+  }
 }
 
 @media screen and (max-width: 625px) {
+  header .titel h1 {
+    line-height: 1em;
+  }
+
+  header .titel .payoff {
+    display: none;
+  }
+
   main .inner .product-tekst {
     flex-direction: column;
   }
