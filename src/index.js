@@ -10,4 +10,4 @@ import './index.css';
 // add order-form button
 document.querySelectorAll('.bestel-knop').forEach(div => {
   ReactDOM.render(<OrderForm />, div);
-})
+});
