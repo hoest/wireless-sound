@@ -1,8 +1,5 @@
 <?php
 
-$mail_to = "jelle@hoest.nl";
-$mail_server = "";
-
 // uniek nummer -> bestelnummer
 $uid = strtoupper(uniqid(""));
 
@@ -10,9 +7,14 @@ $uid = strtoupper(uniqid(""));
 $postdata = file_get_contents("php://input");
 $json = json_decode(utf8_encode($postdata));
 
+// from data
+$mail_to = "jelle@hoest.nl"; //"info@wireless-is-more.nl";
+$mail_name = $json->{"name"};
+$mail_from = $json->{"email"};
+
 // verstuur de bestelling-mail
 function sendmail($to) {
-  global $uid;
+  global $uid, $mail_name, $mail_from;
   $subject = "Bestelling: " . $uid;
   $html  = "<html><body>";
   $html .= "<h1>Bestelling " . $uid . "</h1>";
@@ -20,7 +22,7 @@ function sendmail($to) {
   $html .= get_html();
   $html .= "</body></html>";
 
-  return multipartmail($_POST["Naam"], $_POST["E-mail"], $to, $subject, $html);
+  return multipartmail($mail_name, $mail_from, $to, $subject, $html);
 }
 
 // verstuur het 'bedankt'-mailtje
@@ -81,21 +83,26 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
   exit;
 }
 
-$mail_from = $json->{"email"};
-
 header('Content-Type: application/json');
-if (sendmail($mail_to) && sendthanks($mail_from)) {
-  // redirect naar het bedankje
-  echo json_encode({
-    "success" => true,
-    "input" => $json,
-  });
-} else {
-  // het mailen gaat mis; redirect naar formulier met deze parameter
-  echo json_encode({
-    "success" => false
-    "input" => $json,
-  });
+if (!empty($mail_to) && !empty($mail_from) && !empty($mail_name)) {
+  if (sendmail($mail_to) && sendthanks($mail_from)) {
+    // redirect naar het bedankje
+    echo json_encode([
+      "success" => true,
+    ]);
+  } else {
+    // het mailen gaat mis; redirect naar formulier met deze parameter
+    echo json_encode([
+      "success" => false,
+      "error" => true
+    ]);
+  }
+}
+else {
+  echo json_encode([
+    "success" => false,
+    "valid" => false
+  ]);
 }
 
 ?>

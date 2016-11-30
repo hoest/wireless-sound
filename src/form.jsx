@@ -8,7 +8,27 @@ class Form extends PureComponent {
     super(props);
     this.state = {};
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  /**
+   */
+  componentWillMount() {
+    Children.map(this.props.children, (child, idx) => {
+      const { name, defaultValue } = child.props;
+
+      this.setState({
+        [name]: defaultValue || '',
+      });
+    });
+  }
+
+  /**
+   */
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmit(this.state);
   }
 
   /**
@@ -25,20 +45,14 @@ class Form extends PureComponent {
 
   /**
    */
-  getValue(name, defaultValue) {
-    if (defaultValue && !this.state[name]) {
-      this.setState({
-        [name]: defaultValue,
-      });
-    }
-
+  getValue(name) {
     switch (name) {
       case 'total':
         return this.state.number
           ? this.state.number * 18
           : 0;
       default:
-        return this.state[name] || defaultValue;
+        return this.state[name];
     }
   }
 
@@ -46,18 +60,19 @@ class Form extends PureComponent {
    * Render method
    */
   render() {
-    const { children, onSubmit, toggleForm } = this.props;
+    const { children, toggleForm } = this.props;
 
-    return <form onSubmit={onSubmit}>
+    return <form onSubmit={this.handleSubmit}>
       {Children.map(children, (child, idx) => {
-        const { title, name, defaultValue } = child.props;
+        const { title, name } = child.props;
 
         return <div key={idx} className="row">
           <label>
             <div>{title}</div>
             {cloneElement(child, assign({}, child.props, {
               onChange: this.handleChange,
-              value: this.getValue(name, defaultValue),
+              value: this.getValue(name),
+              defaultValue: undefined,
             }))}
           </label>
         </div>;

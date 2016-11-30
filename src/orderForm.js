@@ -1,5 +1,6 @@
 import Form from './form.jsx';
 import React, { PureComponent } from 'react';
+import { sendMail } from './api';
 
 class OrderForm extends PureComponent {
   /**
@@ -18,8 +19,13 @@ class OrderForm extends PureComponent {
 
   /**
    */
-  handleSubmit(e) {
-    e.preventDefault();
+  handleSubmit(form) {
+    sendMail(form)
+      .then(json => {
+        this.setState({
+          showForm: !json.success,
+        });
+      })
   }
 
   /**
