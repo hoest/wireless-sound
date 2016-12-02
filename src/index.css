@@ -196,6 +196,10 @@ footer p {
   main .product-uitgelicht .product-prijs {
     right: 0;
   }
+
+  .bestel-formulier {
+    margin: .5rem 0!important;
+  }
 }
 
 @media screen and (max-width: 625px) {
@@ -241,11 +245,17 @@ footer p {
   box-shadow: 1px 1px 10px 1px rgba(68, 68, 68, 0.6);
   width: 400px;
   border: 1px solid #ddd;
+  overflow: auto;
+}
+
+.bestel-formulier .row label .label {
+  font-size: 80%;
 }
 
 .bestel-formulier .row {
   margin-bottom: 1em;
 }
+
 
 .bestel-formulier .row input {
   background-color: transparent;
@@ -258,4 +268,23 @@ footer p {
 .bestel-formulier .row input:focus {
   outline: none;
   border-bottom: 2px solid #D7F42A;
+}
+
+.bestel-formulier .zipcode,
+.bestel-formulier .number {
+  float: left;
+  width: 50%
+}
+
+.bestel-formulier .city,
+.bestel-formulier .total {
+  float: right;
+  width: 50%
+}
+
+.bestel-formulier .zipcode input,
+.bestel-formulier .number input,
+.bestel-formulier .city input,
+.bestel-formulier .total input {
+  width: 90%;
 }

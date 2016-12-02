@@ -10,6 +10,7 @@ class OrderForm extends PureComponent {
     this.state = {
       showForm: false,
       scrollTop: 0,
+      height: 0,
     };
 
     this.toggleForm = this.toggleForm.bind(this);
@@ -53,7 +54,8 @@ class OrderForm extends PureComponent {
    */
   handleScroll() {
     this.setState({
-      scrollTop: document.body.scrollTop
+      scrollTop: document.body.scrollTop,
+      height: window.innerHeight - (2 * 64),
     });
   }
 
@@ -67,7 +69,9 @@ class OrderForm extends PureComponent {
         {showForm && <div className="bestel-formulier-container" style={{
           top: this.state.scrollTop,
         }}>
-          <div className="bestel-formulier">
+          <div className="bestel-formulier" style={{
+            height: this.state.height,
+          }}>
             <p>Bestellen...</p>
             <Form onSubmit={this.handleSubmit} toggleForm={this.toggleForm}>
               <input
@@ -84,6 +88,28 @@ class OrderForm extends PureComponent {
                 type="email"
               />
               <input
+                autoFocus
+                name="address"
+                required
+                title="Adres"
+                type="text"
+              />
+              <input
+                autoFocus
+                name="zipcode"
+                required
+                title="Postcode"
+                type="text"
+                maxLength="6"
+              />
+              <input
+                autoFocus
+                name="city"
+                required
+                title="Plaats"
+                type="text"
+              />
+              <input
                 defaultValue="1"
                 min="0"
                 name="number"
@@ -94,7 +120,7 @@ class OrderForm extends PureComponent {
               <input
                 name="total"
                 readOnly
-                title="Prijs (exclusief verzendkosten)"
+                title="Prijs"
                 type="text"
               />
             </Form>

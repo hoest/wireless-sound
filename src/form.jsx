@@ -47,10 +47,13 @@ class Form extends PureComponent {
    */
   getValue(name) {
     switch (name) {
-      case 'total':
-        return this.state.number
+      case 'total': {
+        const price = this.state.number
           ? this.state.number * 18
           : 0;
+
+        return `€ ${Number(price).toFixed(2)}`
+      }
       default:
         return this.state[name];
     }
@@ -66,9 +69,9 @@ class Form extends PureComponent {
       {Children.map(children, (child, idx) => {
         const { title, name } = child.props;
 
-        return <div key={idx} className="row">
+        return <div key={idx} className={`row ${name}`}>
           <label>
-            <div>{title}</div>
+            <div className="label">{title}</div>
             {cloneElement(child, assign({}, child.props, {
               onChange: this.handleChange,
               value: this.getValue(name),
