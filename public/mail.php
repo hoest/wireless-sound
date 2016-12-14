@@ -8,7 +8,7 @@ $postdata = file_get_contents("php://input");
 $json = json_decode(utf8_encode($postdata));
 
 // from data
-$mail_to = "jelle@hoest.nl"; //"info@wireless-is-more.nl";
+$mail_to = "the.official.wireless.inc@gmail.com";
 $mail_name = $json->{"name"};
 $mail_from = $json->{"email"};
 
@@ -32,6 +32,8 @@ function sendthanks($to) {
   $html  = "<html><body>";
   $html .= "<h1>Bestelling verzonden</h1>";
   $html .= "<p>Uw bestelling (nr. " . $uid . ") is verzonden naar " . $mail_to . ", waarvoor dank.</p>";
+  $html .= "<p>Hieronder vindt u het ingevulde bestelformulier:</p>";
+  $html .= get_html();
   $html .= "<p>M.v.g.,</p><p>Afzender<br />" . $mail_to . "</p>";
 
   return multipartmail("Wireless Sound", $mail_to, $to, $subject, $html);
@@ -68,9 +70,34 @@ function get_html() {
   global $json;
   $form = "<table>";
   foreach ($json as $key => $value) {
+    $label = $key;
+    $_value = $value;
+    if ($key == 'name') {
+      $label = 'Naam';
+    }
+    else if ($key == 'email') {
+      $label = 'Emailadres';
+    }
+    else if ($key == 'address') {
+      $label = 'Adres';
+    }
+    else if ($key == 'zipcode') {
+      $label = 'Postcode';
+    }
+    else if ($key == 'city') {
+      $label = 'Plaats';
+    }
+    else if ($key == 'number') {
+      $label = 'Aantal';
+    }
+    else if ($key == 'total') {
+      $label = 'Prijs';
+      $_value = number_format(intval($json->{'number'}) * 18, 2, ',', '');
+    }
+
     $form .= "<tr>";
-    $form .= "<th>$key</th>";
-    $form .= "<td>$value</td>";
+    $form .= "<th>$label</th>";
+    $form .= "<td>$_value</td>";
     $form .= "</tr>";
   }
 
