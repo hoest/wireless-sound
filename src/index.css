@@ -243,7 +243,7 @@ footer p {
   text-align: left;
   border-radius: 5px;
   box-shadow: 1px 1px 10px 1px rgba(68, 68, 68, 0.6);
-  width: 400px;
+  width: 640px;
   border: 1px solid #ddd;
   overflow: auto;
 }
@@ -256,8 +256,22 @@ footer p {
   margin-bottom: 1em;
 }
 
+.bestel-formulier .button-row {
+  display: flex;
+  justify-content: center;
+}
 
-.bestel-formulier .row input {
+.bestel-formulier .button-row button {
+  margin: 0 1em;
+}
+
+.bestel-formulier .uitleg {
+  font-size: 80%;
+}
+
+.bestel-formulier .row input,
+.bestel-formulier .row textarea,
+.bestel-formulier .row select {
   background-color: transparent;
   border: none;
   width: 100%;
@@ -287,4 +301,9 @@ footer p {
 .bestel-formulier .city input,
 .bestel-formulier .total input {
   width: 90%;
+}
+
+.bereikbaar {
+  padding: 1em;
+  text-align: center;
 }

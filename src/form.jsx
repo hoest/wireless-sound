@@ -81,7 +81,7 @@ class Form extends PureComponent {
         </div>;
       })}
 
-      <div>
+      <div className="button-row">
         <button>Bestellen</button>
         <button onClick={toggleForm}>Annuleren</button>
       </div>

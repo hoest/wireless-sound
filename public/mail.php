@@ -90,6 +90,12 @@ function get_html() {
     else if ($key == 'number') {
       $label = 'Aantal';
     }
+    else if ($key == 'color') {
+      $label = 'Kleur';
+    }
+    else if ($key == 'comments') {
+      $label = 'Opmerkingen';
+    }
     else if ($key == 'total') {
       $label = 'Prijs';
       $_value = number_format(intval($json->{'number'}) * 18, 2, ',', '');

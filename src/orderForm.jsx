@@ -72,7 +72,9 @@ class OrderForm extends PureComponent {
           <div className="bestel-formulier" style={{
             height: this.state.height,
           }}>
-            <p>Bestellen...</p>
+            <p className="uitleg">Met behulp van onderstaand formulier kunt u een bestelling bij ons insturen.
+            We ontvangen vervolgens een mail en zullen zo spoedig mogelijk contact met u
+            opnemen over de verdere afhandeling van uw bestelling.</p>
             <Form onSubmit={this.handleSubmit} toggleForm={this.toggleForm}>
               <input
                 autoFocus
@@ -109,6 +111,18 @@ class OrderForm extends PureComponent {
                 title="Plaats"
                 type="text"
               />
+              <select
+                name="color"
+                required
+                title="Kleur">
+                <option value="">Kies een kleur</option>
+                <option value="">---</option>
+                <option value="Groen/zwart">Groen/zwart</option>
+                <option value="Rood/zwart">Rood/zwart</option>
+                <option value="Blauw/zwart">Blauw/zwart</option>
+                <option value="Zwart">Zwart</option>
+                <option value="Wit">Wit</option>
+              </select>
               <input
                 defaultValue="1"
                 min="0"
@@ -123,6 +137,11 @@ class OrderForm extends PureComponent {
                 title="Prijs"
                 type="text"
               />
+              <textarea
+                name="comments"
+                title="Opmerkingen"
+                placeholder="Plaats hier eventuele opmerkingen"
+                rows="3"></textarea>
             </Form>
           </div>
         </div>}

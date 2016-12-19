@@ -4,7 +4,7 @@ polyfill();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OrderForm from './orderForm';
+import OrderForm from './orderForm.jsx';
 import './index.css';
 
 // add order-form button
